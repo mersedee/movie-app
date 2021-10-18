@@ -1,11 +1,17 @@
 import React from 'react';
+import {GlobalProvider} from "./context/GlobalState";
 import './App.scss';
 
+import HomePage from "./pages/Home";
+
 function App() {
+
   return (
-    <div className="App">
-     movie app
-    </div>
+      <GlobalProvider>
+        <div className="App">
+         <HomePage />
+        </div>
+      </GlobalProvider>
   );
 }
 
