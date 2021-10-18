@@ -1,6 +1,7 @@
 import types from './types';
+import * as models from '../models'
 
-export function reducer(state: any, action: any) {
+export function reducer(state: models.initialStateType, action: any) {
     switch(action.type) {
         case types.API_GET_PENDING:
             return {

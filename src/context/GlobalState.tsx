@@ -1,6 +1,7 @@
-import React, { createContext, useReducer, useEffect, FC, Dispatch } from 'react';
+import React, { createContext, useReducer, useEffect, FC } from 'react';
 import { reducer } from './reducer';
 import { actions } from './actions';
+import * as models from '../models'
 
 const initialState = {
     loading: false,
@@ -9,19 +10,17 @@ const initialState = {
     movies: []
 }
 
-export const GlobalContext = createContext({state: {}, dispatch: () => null, actions: {}});
+export const GlobalContext = createContext<models.createContextType>({state: initialState, dispatch: () => null, actions: {}});
 
 export const GlobalProvider:FC = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        actions.getPinnedDocuments()(dispatch);
+        actions.getMovies()(dispatch);
     }, []);
 
-    const dispatchStore = state.dispatch as typeof state.dispatch | Dispatch<any>
-
     return <GlobalContext.Provider value={{
-        state, dispatch: dispatchStore, actions: actions,
+        state, dispatch, actions: actions,
     }}>
         {children}
     </GlobalContext.Provider>;
