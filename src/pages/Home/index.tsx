@@ -1,8 +1,10 @@
 import React from 'react';
 
 const HomePage = () => (
-  <div>
-    movie home page
+  <div className="row">
+    <div className="col-12">
+      movie home page
+    </div>
   </div>
 );
 
