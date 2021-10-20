@@ -16,7 +16,14 @@ function reducer(state: models.initialStateType, action: any) {
         loading: false,
         movies: action.payload.data.data.results,
       };
+    case types.API_GET_TRENDING_MOVIES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        trendingMovies: action.payload.data.data.results,
+      };
     case types.API_GET_MOVIES_FAILURE:
+    case types.API_GET_TRENDING_MOVIES_FAILURE:
       return {
         ...state,
         loading: false,

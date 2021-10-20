@@ -10,6 +10,7 @@ const initialState = {
   error: false,
   errorMessage: '',
   movies: [],
+  trendingMovies: [],
 };
 
 export const GlobalContext = createContext<models.createContextType>(
@@ -21,6 +22,7 @@ export const GlobalProvider:FC = ({ children }) => {
 
   useEffect(() => {
     actions.getMovies()(dispatch);
+    actions.getTrendingMovies()(dispatch);
   }, []);
 
   return (

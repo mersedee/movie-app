@@ -1,1 +1,27 @@
 @import "styles";
+@import "styles/vars";
+
+.layout {
+  padding-right: 86px;
+  padding-left: 86px;
+}
+
+.button-primary {
+  background-color: $primaryColor;
+  border: 1px solid $primaryColor;
+  color: white;
+  border-radius: 2.5px;
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  border-radius: 2.5px;
+}
+
+.button-default {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 2.5px;
+}
