@@ -5,7 +5,7 @@ import types from 'context/types';
 
 const actions = {
   getMovies: () => async (dispatch: Dispatch<any>) => {
-    dispatch({ type: types.API_GET_PENDING });
+    dispatch({ type: types.API_GET_MOVIES_PENDING });
     try {
       const data = await axios.get(getMovieListUrl());
       dispatch({ type: types.API_GET_MOVIES_SUCCESS, payload: { data } });
@@ -15,6 +15,7 @@ const actions = {
     }
   },
   getTrendingMovies: () => async (dispatch: Dispatch<any>) => {
+    dispatch({ type: types.API_GET_TRENDING_MOVIES_PENDING });
     try {
       const data = await axios.get(getTrendingMoviesUrl());
       dispatch({ type: types.API_GET_TRENDING_MOVIES_SUCCESS, payload: { data } });

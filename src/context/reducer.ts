@@ -3,7 +3,8 @@ import * as models from 'models';
 
 function reducer(state: models.initialStateType, action: any) {
   switch (action.type) {
-    case types.API_GET_PENDING:
+    case types.API_GET_MOVIES_PENDING:
+    case types.API_GET_TRENDING_MOVIES_PENDING:
       return {
         ...state,
         loading: true,

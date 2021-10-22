@@ -1,12 +1,12 @@
 import {
-  createContext, useReducer, useEffect, FC,
+  createContext, useReducer, FC,
 } from 'react';
 import reducer from 'context/reducer';
 import actions from 'context/actions';
 import * as models from 'models';
 
 const initialState = {
-  loading: false,
+  loading: true,
   error: false,
   errorMessage: '',
   movies: [],
@@ -19,11 +19,6 @@ export const GlobalContext = createContext<models.createContextType>(
 
 export const GlobalProvider:FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    actions.getMovies()(dispatch);
-    actions.getTrendingMovies()(dispatch);
-  }, []);
 
   return (
     <GlobalContext.Provider value={{ state, dispatch, actions }}>

@@ -13,6 +13,11 @@
     right: 0;
     left: 0;
     height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 40px;
+
 
     &-title {
       font-size: 45px;
