@@ -1,1 +1,41 @@
+@import "styles/vars";
 
+.tabs {
+  margin-top: 20px;
+
+  :global(.rc-tabs) {
+    border: 1px solid transparent;
+  }
+
+  :global(.rc-tabs-tab) {
+    font-size: 18px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 20px;
+    color: $secondaryColor;
+  }
+
+  :global(.rc-tabs-tab-active) {
+    font-size: 18px;
+    color: $primaryColor;
+    font-weight: normal;
+  }
+
+  :global(.rc-tabs-ink-bar) {
+    background-color: $primaryColor;
+    height: 2px;
+  }
+
+  :global(.rc-tabs-nav-wrap) {
+    border-bottom: 1px solid #dfdfdf;
+  }
+
+  :global(.rc-tabs-tabpane) {
+    padding-top: 37px;
+  }
+}
+
+.genre {
+  display: flex;
+  align-items: center;
+}

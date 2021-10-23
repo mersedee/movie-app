@@ -3,6 +3,7 @@ import { GlobalProvider } from 'context/GlobalState';
 
 import 'bootstrap/scss/bootstrap.scss';
 import 'font-awesome/scss/font-awesome.scss';
+import '../node_modules/rc-tabs/assets/index.css';
 import './App.scss';
 
 import HomePage from 'pages/Home';
