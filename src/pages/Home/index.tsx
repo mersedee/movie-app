@@ -16,13 +16,14 @@ const HomePage = () => {
   const [trendingMovie, setTrendingMovie] = useState<Movie>({} as Movie);
   const [genres, setGenres] = useState<Genre[]>([]);
   const { state, dispatch } = useContext(GlobalContext);
-  const { trendingMovies, loading } = state;
+  const { trendingMovies, movies, loading } = state;
 
   // functions
 
   // hooks
   useEffect(() => {
     actions.getTrendingMovies()(dispatch);
+    actions.getMovies()(dispatch);
   }, []);
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const HomePage = () => {
   );
 
   const tabs = [
-    { key: 'trending', tab: 'Trending', content: <MovieList movies={trendingMovies} /> },
+    { key: 'trending', tab: 'Trending', content: <MovieList movies={movies} /> },
     { key: 'rated', tab: 'Top Rated', content: '2' },
     { key: 'new', tab: 'New Arrivals', content: '3' },
     { key: 'genre', tab: dropdown, content: '4' },
