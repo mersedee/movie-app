@@ -3,9 +3,11 @@ import { useContext, useEffect, useState } from 'react';
 import Tabs, { TabPane } from 'rc-tabs';
 
 import { GlobalContext } from 'context/GlobalState';
-import { Genre, GENRERS } from 'api/types';
+import { Genre } from 'api/types';
 import { Movie } from 'models';
 import actions from 'context/actions';
+import MovieList from 'components/MovieList';
+import findGenres from 'helpers/findGenres';
 import HeaderSection from './HeaderSection';
 
 import styles from './styles.module.scss';
@@ -17,17 +19,6 @@ const HomePage = () => {
   const { trendingMovies, loading } = state;
 
   // functions
-  const findGenres = (movie: Movie) => {
-    const formatted:Genre[] = [];
-    GENRERS.forEach((genre: Genre) => {
-      movie.genre_ids.forEach((id) => {
-        if (parseInt(id, 10) === genre.id) {
-          formatted.push(genre);
-        }
-      });
-    });
-    setGenres(formatted);
-  };
 
   // hooks
   useEffect(() => {
@@ -36,7 +27,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (trendingMovies.length > 0) {
-      findGenres(trendingMovies[0]);
+      setGenres(findGenres(trendingMovies[0]));
       setTrendingMovie(trendingMovies[0]);
     }
   }, [trendingMovies]);
@@ -52,8 +43,9 @@ const HomePage = () => {
       <span className="fa fa-angle-down ms-1" />
     </div>
   );
+
   const tabs = [
-    { key: 'trending', tab: 'Trending', content: '1' },
+    { key: 'trending', tab: 'Trending', content: <MovieList movies={trendingMovies} /> },
     { key: 'rated', tab: 'Top Rated', content: '2' },
     { key: 'new', tab: 'New Arrivals', content: '3' },
     { key: 'genre', tab: dropdown, content: '4' },

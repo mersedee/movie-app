@@ -22,7 +22,7 @@ const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
       className={styles.header}
       style={{
         backgroundImage: `${gradiantStyle},
-         url("${getMovieUrl(trendingMovie.backdrop_path, 800, 1920)}")`,
+         url("${getMovieUrl(trendingMovie.backdrop_path, true)}")`,
       }}
     >
       <div className="layout">

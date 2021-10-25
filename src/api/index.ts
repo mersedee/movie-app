@@ -9,4 +9,10 @@ export const getTrendingMoviesUrl = (
   timeWindowType: timeWindow = 'day',
 ) => `${baseUrl}/trending/${mediaType}/${timeWindowType}?api_key=${process.env.REACT_APP_API_KEY}`;
 
-export const getMovieUrl = (path:string, height:number, width: number) => `https://image.tmdb.org/t/p/w${width}_and_h${height}_multi_faces${path}`;
+export const getMovieUrl = (path:string, background: boolean = false) => {
+  if (background) {
+    return `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${path}`;
+  }
+
+  return `https://image.tmdb.org/t/p/w440_and_h660_face${path}`;
+};
