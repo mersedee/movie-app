@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import { Movie } from 'models';
-import { getMovieUrl } from 'api';
+import { getMovieUrl, getSrcsetUrl } from 'api';
 import { Genre } from 'api/types';
 import findGenres from 'helpers/findGenres';
+import movieIcon from 'assets/images/film_reel.svg';
 
 import styles from './styles.module.scss';
 
@@ -18,9 +19,26 @@ const MovieItem = ({ movie }: AppProps) => {
     setGenres(findGenres(movie));
   }, []);
 
+  const date = new Date(movie.release_date).getFullYear();
+
   return (
     <div className={styles.card}>
-      <div className={styles.img} style={{ backgroundImage: ` url("${getMovieUrl(movie.backdrop_path)}")` }} />
+      {!movie.poster_path ? (
+        <div className={styles['no-img']}>
+          <img src={movieIcon} alt="icon" />
+        </div>
+      )
+        : (
+          <div className={styles['img-container']}>
+            <img
+              loading="lazy"
+              src={getMovieUrl(movie.poster_path)}
+              srcSet={getSrcsetUrl(movie.poster_path)}
+              alt={movie.title}
+            />
+            {date ? <span>{date}</span> : null}
+          </div>
+        )}
       <div className={styles['card-content']}>
         <div className="d-flex flex-column">
           <div className={styles.subject}>

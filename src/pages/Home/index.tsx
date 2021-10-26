@@ -3,7 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import Tabs, { TabPane } from 'rc-tabs';
 
 import { GlobalContext } from 'context/GlobalState';
-import { Genre } from 'api/types';
+import {
+  Genre, POPULARITY_SORT, RELEASE_DATE_SORT, VOTE_AVERAGE_SORT,
+} from 'api/types';
 import { Movie } from 'models';
 import actions from 'context/actions';
 import MovieList from 'components/MovieList';
@@ -18,12 +20,10 @@ const HomePage = () => {
   const { state, dispatch } = useContext(GlobalContext);
   const { trendingMovies, movies, loading } = state;
 
-  // functions
-
   // hooks
   useEffect(() => {
     actions.getTrendingMovies()(dispatch);
-    actions.getMovies()(dispatch);
+    actions.getMovies(1, POPULARITY_SORT[0])(dispatch);
   }, []);
 
   useEffect(() => {
@@ -33,11 +33,6 @@ const HomePage = () => {
     }
   }, [trendingMovies]);
 
-  // loading
-  if (trendingMovies.length === 0 || loading) {
-    return <div>Loading...</div>;
-  }
-
   const dropdown = (
     <div className={styles.genre}>
       <span>Genre</span>
@@ -46,21 +41,26 @@ const HomePage = () => {
   );
 
   const tabs = [
-    { key: 'trending', tab: 'Trending', content: <MovieList movies={movies} /> },
-    { key: 'rated', tab: 'Top Rated', content: '2' },
-    { key: 'new', tab: 'New Arrivals', content: '3' },
-    { key: 'genre', tab: dropdown, content: '4' },
+    { key: POPULARITY_SORT[0], tab: 'Trending' },
+    { key: VOTE_AVERAGE_SORT[0], tab: 'Top Rated' },
+    { key: RELEASE_DATE_SORT[0], tab: 'New Arrivals' },
+    { key: 'genre', tab: dropdown },
   ];
+
+  const onSort = (key:any) => {
+    actions.getMovies(1, key)(dispatch);
+  };
 
   return (
     <div className="container-fluid px-0">
-      <HeaderSection trendingMovie={trendingMovie} genres={genres} />
+      {trendingMovies.length > 0 && <HeaderSection trendingMovie={trendingMovie} genres={genres} />}
       <div className="layout">
         <div className={styles.tabs}>
-          <Tabs defaultActiveKey="light">
+          <Tabs defaultActiveKey={tabs[0].key} onChange={onSort}>
             {tabs.map((tab) => (
               <TabPane key={tab.key} tab={tab.tab}>
-                {tab.content}
+                {!loading
+                && <MovieList movies={movies} />}
               </TabPane>
             ))}
           </Tabs>

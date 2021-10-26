@@ -1,9 +1,22 @@
-import { media, timeWindow } from 'api/types';
+import {
+  media, timeWindow, Sort, POPULARITY_SORT,
+} from 'api/types';
 
 const baseUrl = 'https://api.themoviedb.org/3';
 const tmdbUrl = 'https://image.tmdb.org/t/p/';
 
-export const getMovieListUrl = () => `${baseUrl}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`;
+export const getMovieListUrl = (
+  page: number = 1,
+  sortBy: Sort = POPULARITY_SORT[0],
+) => {
+  const search: string[] = [
+    `page=${page}`,
+    `sort_by=${sortBy}`,
+  ];
+  return `${baseUrl}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&`
+      + `${search.filter((s) => s)
+        .join('&')}`;
+};
 
 export const getTrendingMoviesUrl = (
   mediaType: media = 'movie',
@@ -17,3 +30,5 @@ export const getMovieUrl = (path:string, background: boolean = false) => {
 
   return `${tmdbUrl}w440_and_h660_face${path}`;
 };
+
+export const getSrcsetUrl = (path:string) => `${tmdbUrl}w220_and_h330_face/${path} 1x, ${tmdbUrl}w440_and_h660_face/${path} 2x`;
