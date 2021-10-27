@@ -10,6 +10,7 @@ import {
 import actions from 'context/actions';
 import MovieList from 'components/MovieList';
 import findGenres from 'helpers/findGenres';
+import Loading from 'components/Loading';
 import HeaderSection from './HeaderSection';
 
 import styles from './styles.module.scss';
@@ -60,8 +61,9 @@ const HomePage = () => {
           <Tabs defaultActiveKey={tabs[0].key} onChange={onSort}>
             {tabs.map((tab) => (
               <TabPane key={tab.key} tab={tab.tab}>
-                {!loading
-                && <MovieList movies={movies.results} />}
+                {loading
+                  ? <Loading />
+                  : <MovieList movies={movies.results} />}
               </TabPane>
             ))}
           </Tabs>

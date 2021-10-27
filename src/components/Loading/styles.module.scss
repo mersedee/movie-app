@@ -1,0 +1,43 @@
+@import "styles/vars";
+
+.ul {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  margin-bottom: 0;
+
+  .li {
+    list-style: none;
+    width: 5px;
+    height: 25px;
+    background: $primaryColor;
+    margin: 0 3px;
+    border-radius: 5px;
+  }
+
+  @for $i from 1 through 6 {
+    .li-#{$i} {
+      animation: move 0.95s ease-in-out $i * 0.1s infinite;
+    }
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: scaleY(1.2);
+  }
+  75% {
+    transform: scaleY(0.7);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.loading {
+  font-size: 15px;
+  color: #babbc3;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
