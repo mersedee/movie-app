@@ -1,11 +1,15 @@
 import React from 'react';
-import { MovieRate } from 'models';
 
 import styles from './styles.module.scss';
 
 const ReactStars = require('react-rating-stars-component').default;
 
-const Vote = ({ count, vote = 1 }: MovieRate) => {
+type AppProps = {
+    count: number,
+    vote: number,
+}
+
+const Vote = ({ count, vote = 1 }: AppProps) => {
   const voteNumber = (value: number) => Math.round((value / 2) * 10) / 10;
   return (
     <div className={styles.box}>
