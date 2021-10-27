@@ -1,9 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Movie } from 'models';
+import { Movie, Genre } from 'models';
 import Header from 'components/header';
-import { Genre } from 'api/types';
 import { getMovieUrl } from 'api';
 import Vote from 'components/Vote';
 

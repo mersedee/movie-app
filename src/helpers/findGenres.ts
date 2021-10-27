@@ -1,5 +1,4 @@
-import { Movie } from 'models';
-import { Genre, GENRERS } from 'api/types';
+import { Movie, Genre, GENRERS } from 'models';
 
 const findGenres = (movie: Movie) => {
   const formatted:Genre[] = [];

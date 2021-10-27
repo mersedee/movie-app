@@ -1,6 +1,6 @@
 import {
   media, timeWindow, Sort, POPULARITY_SORT,
-} from 'api/types';
+} from 'models';
 
 const baseUrl = 'https://api.themoviedb.org/3';
 const tmdbUrl = 'https://image.tmdb.org/t/p/';

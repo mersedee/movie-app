@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Dispatch } from 'react';
 import { getMovieListUrl, getTrendingMoviesUrl } from 'api';
 import types from 'context/types';
-import { Sort } from 'api/types';
+import { Sort } from 'models';
 
 const actions = {
   getMovies: (page: number = 1, sort: Sort) => async (dispatch: Dispatch<any>) => {

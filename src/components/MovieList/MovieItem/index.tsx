@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { Movie } from 'models';
+import { Movie, Genre } from 'models';
 import { getMovieUrl, getSrcsetUrl } from 'api';
-import { Genre } from 'api/types';
 import findGenres from 'helpers/findGenres';
 import movieIcon from 'assets/images/film_reel.svg';
 

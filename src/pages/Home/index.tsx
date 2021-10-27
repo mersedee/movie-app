@@ -5,8 +5,8 @@ import Tabs, { TabPane } from 'rc-tabs';
 import { GlobalContext } from 'context/GlobalState';
 import {
   Genre, POPULARITY_SORT, RELEASE_DATE_SORT, VOTE_AVERAGE_SORT,
-} from 'api/types';
-import { Movie } from 'models';
+  Movie,
+} from 'models';
 import actions from 'context/actions';
 import MovieList from 'components/MovieList';
 import findGenres from 'helpers/findGenres';
@@ -27,9 +27,9 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    if (trendingMovies.length > 0) {
-      setGenres(findGenres(trendingMovies[0]));
-      setTrendingMovie(trendingMovies[0]);
+    if (trendingMovies.results.length > 0) {
+      setGenres(findGenres(trendingMovies.results[0]));
+      setTrendingMovie(trendingMovies.results[0]);
     }
   }, [trendingMovies]);
 
@@ -53,14 +53,15 @@ const HomePage = () => {
 
   return (
     <div className="container-fluid px-0">
-      {trendingMovies.length > 0 && <HeaderSection trendingMovie={trendingMovie} genres={genres} />}
+      {trendingMovies.results.length > 0
+      && <HeaderSection trendingMovie={trendingMovie} genres={genres} />}
       <div className="layout">
         <div className={styles.tabs}>
           <Tabs defaultActiveKey={tabs[0].key} onChange={onSort}>
             {tabs.map((tab) => (
               <TabPane key={tab.key} tab={tab.tab}>
                 {!loading
-                && <MovieList movies={movies} />}
+                && <MovieList movies={movies.results} />}
               </TabPane>
             ))}
           </Tabs>

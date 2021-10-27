@@ -1,12 +1,12 @@
 import { Dispatch } from 'react';
-import { Movie } from './movie';
+import { MovieList } from './movie-types';
 
 export type initialStateType = {
     loading: boolean;
     error: boolean;
     errorMessage: string;
-    movies: Movie[];
-    trendingMovies: Movie[];
+    movies: MovieList;
+    trendingMovies: MovieList;
 };
 
 export type createContextType = {

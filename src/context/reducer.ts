@@ -15,13 +15,13 @@ function reducer(state: models.initialStateType, action: any) {
       return {
         ...state,
         loading: false,
-        movies: action.payload.data.data.results,
+        movies: action.payload.data.data,
       };
     case types.API_GET_TRENDING_MOVIES_SUCCESS:
       return {
         ...state,
         loading: false,
-        trendingMovies: action.payload.data.data.results,
+        trendingMovies: action.payload.data.data,
       };
     case types.API_GET_MOVIES_FAILURE:
     case types.API_GET_TRENDING_MOVIES_FAILURE:

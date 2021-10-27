@@ -5,12 +5,19 @@ import reducer from 'context/reducer';
 import actions from 'context/actions';
 import * as models from 'models';
 
+const initialMovieList = {
+  page: 1,
+  results: [],
+  total_pages: 1,
+  total_results: 0,
+};
+
 const initialState = {
   loading: true,
   error: false,
   errorMessage: '',
-  movies: [],
-  trendingMovies: [],
+  movies: initialMovieList,
+  trendingMovies: initialMovieList,
 };
 
 export const GlobalContext = createContext<models.createContextType>(
