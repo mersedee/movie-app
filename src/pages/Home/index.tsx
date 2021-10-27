@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 // import classNames from 'classnames';
 import Tabs, { TabPane } from 'rc-tabs';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { GlobalContext } from 'context/GlobalState';
 import {
   Genre, POPULARITY_SORT, RELEASE_DATE_SORT, VOTE_AVERAGE_SORT,
-  Movie,
+  Movie, Sort,
 } from 'models';
 import actions from 'context/actions';
 import MovieList from 'components/MovieList';
@@ -19,7 +20,10 @@ const HomePage = () => {
   const [trendingMovie, setTrendingMovie] = useState<Movie>({} as Movie);
   const [genres, setGenres] = useState<Genre[]>([]);
   const { state, dispatch } = useContext(GlobalContext);
-  const { trendingMovies, movies, loading } = state;
+  const { trendingMovies, movies } = state;
+  const [count, setCount] = useState<number>(2);
+  const [sort, setSort] = useState<Sort>(POPULARITY_SORT[0]);
+  const [newMovies, setNewMovies] = useState<Movie[]>(movies.results);
 
   // hooks
   useEffect(() => {
@@ -50,6 +54,15 @@ const HomePage = () => {
 
   const onSort = (key:any) => {
     actions.getMovies(1, key)(dispatch);
+    setSort(key);
+  };
+
+  const fetchMoreData = () => {
+    setCount(count + 1);
+    setTimeout(() => {
+      actions.getMovies(count, sort)(dispatch);
+      setNewMovies(newMovies.concat(movies.results));
+    }, 1500);
   };
 
   return (
@@ -61,9 +74,14 @@ const HomePage = () => {
           <Tabs defaultActiveKey={tabs[0].key} onChange={onSort}>
             {tabs.map((tab) => (
               <TabPane key={tab.key} tab={tab.tab}>
-                {loading
-                  ? <Loading />
-                  : <MovieList movies={movies.results} />}
+                <InfiniteScroll
+                  dataLength={newMovies.length}
+                  next={fetchMoreData}
+                  hasMore
+                  loader={<Loading />}
+                >
+                  <MovieList movies={newMovies} />
+                </InfiniteScroll>
               </TabPane>
             ))}
           </Tabs>

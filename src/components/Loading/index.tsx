@@ -8,7 +8,7 @@ const Loading = () => (
     <ul className={styles.ul}>
       {[0, 1, 2, 3, 4, 5].map((item, index) => (
         <li
-          key={item.toString()}
+          key={item}
           className={classNames(styles.li, styles[`li-${index}`])}
         />
       ))}
