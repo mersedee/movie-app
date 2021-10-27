@@ -4,15 +4,15 @@ import Tabs, { TabPane } from 'rc-tabs';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { GlobalContext } from 'context/GlobalState';
-import {
-  Genre, POPULARITY_SORT, RELEASE_DATE_SORT, VOTE_AVERAGE_SORT,
-  Movie, Sort,
-} from 'models';
 import actions from 'context/actions';
 import MovieList from 'components/MovieList';
 import findGenres from 'helpers/findGenres';
 import Loading from 'components/Loading';
-import HeaderSection from './HeaderSection';
+import HeaderSection from 'pages/Home/HeaderSection';
+import {
+  Genre, POPULARITY_SORT, RELEASE_DATE_SORT, VOTE_AVERAGE_SORT,
+  Movie, Sort, Tab,
+} from 'models';
 
 import styles from './styles.module.scss';
 
@@ -45,7 +45,7 @@ const HomePage = () => {
     </div>
   );
 
-  const tabs = [
+  const tabs: Tab[] = [
     { key: POPULARITY_SORT[0], tab: 'Trending' },
     { key: VOTE_AVERAGE_SORT[0], tab: 'Top Rated' },
     { key: RELEASE_DATE_SORT[0], tab: 'New Arrivals' },
@@ -72,7 +72,7 @@ const HomePage = () => {
       <div className="layout">
         <div className={styles.tabs}>
           <Tabs defaultActiveKey={tabs[0].key} onChange={onSort}>
-            {tabs.map((tab) => (
+            {tabs.map((tab:Tab) => (
               <TabPane key={tab.key} tab={tab.tab}>
                 <InfiniteScroll
                   dataLength={newMovies.length}
