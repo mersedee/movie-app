@@ -16,6 +16,13 @@ import {
 
 import styles from './styles.module.scss';
 
+const dropdown = (
+  <div className={styles.genre}>
+    <span>Genre</span>
+    <span className="fa fa-angle-down ms-1" />
+  </div>
+);
+
 const HomePage = () => {
   const [trendingMovie, setTrendingMovie] = useState<Movie>({} as Movie);
   const [genres, setGenres] = useState<Genre[]>([]);
@@ -23,13 +30,22 @@ const HomePage = () => {
   const { trendingMovies, movies } = state;
   const [count, setCount] = useState<number>(2);
   const [sort, setSort] = useState<Sort>(POPULARITY_SORT[0]);
-  const [newMovies, setNewMovies] = useState<Movie[]>(movies.results);
+  const [newMovies, setNewMovies] = useState<Movie[]>([]);
 
   // hooks
   useEffect(() => {
     actions.getTrendingMovies()(dispatch);
-    actions.getMovies(1, POPULARITY_SORT[0])(dispatch);
   }, []);
+
+  useEffect(() => {
+    setNewMovies([]);
+    setCount(2);
+    actions.getMovies(1, sort)(dispatch);
+  }, [sort]);
+
+  useEffect(() => {
+    setNewMovies(newMovies.concat(movies.results));
+  }, [movies.results]);
 
   useEffect(() => {
     if (trendingMovies.results.length > 0) {
@@ -37,13 +53,6 @@ const HomePage = () => {
       setTrendingMovie(trendingMovies.results[0]);
     }
   }, [trendingMovies]);
-
-  const dropdown = (
-    <div className={styles.genre}>
-      <span>Genre</span>
-      <span className="fa fa-angle-down ms-1" />
-    </div>
-  );
 
   const tabs: Tab[] = [
     { key: POPULARITY_SORT[0], tab: 'Trending' },
@@ -53,15 +62,18 @@ const HomePage = () => {
   ];
 
   const onSort = (key:any) => {
-    actions.getMovies(1, key)(dispatch);
     setSort(key);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
   const fetchMoreData = () => {
     setCount(count + 1);
     setTimeout(() => {
       actions.getMovies(count, sort)(dispatch);
-      setNewMovies(newMovies.concat(movies.results));
     }, 1500);
   };
 
@@ -79,6 +91,11 @@ const HomePage = () => {
                   next={fetchMoreData}
                   hasMore
                   loader={<Loading />}
+                  endMessage={(
+                    <p className="text-center my-5">
+                      <b>Yay! You have seen it all</b>
+                    </p>
+                  )}
                 >
                   <MovieList movies={newMovies} />
                 </InfiniteScroll>
