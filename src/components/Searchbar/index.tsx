@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './styles.module.scss';
 
 const Searchbar = () => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<boolean>(false);
 
   return (
     <div className="position-relative">
