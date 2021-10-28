@@ -1,0 +1,64 @@
+$size: 40px;
+$border-radius: 8px;
+
+.search {
+  position: relative;
+  height: $size;
+  margin-right: -10px;
+}
+
+.input {
+  background-color: transparent;
+  border: 0;
+  font-size: 16px;
+  padding: 15px;
+  height: $size;
+  width: $size;
+  transition: width 0.3s ease;
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+  color: white;
+}
+
+.input::placeholder {
+  color: white;
+  opacity: 0.6;
+}
+
+.btn {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: $size;
+  width: $size;
+  transition: transform 0.3s ease;
+  padding: 0 10px 0 0;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  text-align: right;
+}
+
+.btn:focus, input:focus {
+  outline: none;
+}
+
+.search.active {
+  //margin-right: 35px;
+
+  .btn, .input {
+    background-color: black;
+  }
+
+  .input {
+    width: 250px;
+  }
+
+  .btn {
+    transform: translateX(220px);
+  }
+}
