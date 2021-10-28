@@ -16,13 +16,6 @@ import {
 
 import styles from './styles.module.scss';
 
-const dropdown = (
-  <div className={styles.genre}>
-    <span>Genre</span>
-    <span className="fa fa-angle-down ms-1" />
-  </div>
-);
-
 const HomePage = () => {
   const [trendingMovie, setTrendingMovie] = useState<Movie>({} as Movie);
   const [genres, setGenres] = useState<Genre[]>([]);
@@ -61,7 +54,6 @@ const HomePage = () => {
     { key: POPULARITY_SORT[0], tab: 'Trending' },
     { key: VOTE_AVERAGE_SORT[0], tab: 'Top Rated' },
     { key: RELEASE_DATE_SORT[0], tab: 'New Arrivals' },
-    { key: 'genre', tab: dropdown },
   ];
 
   const onSort = (key:any) => {
