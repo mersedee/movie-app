@@ -62,3 +62,24 @@ $border-radius: 8px;
     transform: translateX(220px);
   }
 }
+
+.result {
+  color: white;
+  background-color: black;
+  border: 1px solid black;
+  position: absolute;
+  border-radius: $border-radius;
+  margin-top: 6px;
+  left: 0;
+  right: 0;
+  width: calc(100% + 20px);
+
+  &-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  &-item:not(:last-child) {
+    border-bottom: 0.8px solid rgba(255, 255, 255, 0.2);
+  }
+}
