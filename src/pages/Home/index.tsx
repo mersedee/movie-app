@@ -48,9 +48,12 @@ const HomePage = () => {
   }, [movies.results]);
 
   useEffect(() => {
+    const min = 0;
+    const max = 19;
     if (trendingMovies.results.length > 0) {
-      setGenres(findGenres(trendingMovies.results[0]));
-      setTrendingMovie(trendingMovies.results[0]);
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      setGenres(findGenres(trendingMovies.results[randomNumber]));
+      setTrendingMovie(trendingMovies.results[randomNumber]);
     }
   }, [trendingMovies]);
 

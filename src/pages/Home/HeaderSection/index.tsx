@@ -61,12 +61,12 @@ const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
               </button>
             </div>
           </div>
-          {trendingMovie.vote_average && (
-          <Vote
-            vote={trendingMovie.vote_average}
-            count={trendingMovie.vote_count}
-          />
-          )}
+          {trendingMovie.vote_average && trendingMovie.vote_average > 0 ? (
+            <Vote
+              vote={trendingMovie.vote_average}
+              count={trendingMovie.vote_count}
+            />
+          ) : null}
         </div>
       </div>
     </div>
