@@ -1,5 +1,6 @@
 import React from 'react';
 
+import classNames from 'classnames';
 import styles from './styles.module.scss';
 
 const ReactStars = require('react-rating-stars-component').default;
@@ -12,8 +13,10 @@ type AppProps = {
 const Vote = ({ count, vote = 1 }: AppProps) => {
   const voteNumber = (value: number) => Math.round((value / 2) * 10) / 10;
   return (
-    <div className={styles.box}>
-      <div className={styles.count}>Rating <span>based on {count} reviews</span></div>
+    <div className={classNames(styles.box, 'vote-box')}>
+      <div className={classNames(styles.count, 'vote-count')}>
+        Rating <span>based on {count} reviews</span>
+      </div>
       <div className="d-flex align-items-center justify-content-between">
         <ReactStars
           value={voteNumber(vote)}
@@ -26,7 +29,7 @@ const Vote = ({ count, vote = 1 }: AppProps) => {
           color="#f16915"
           isHalf
         />
-        <div className={styles.rate}>{voteNumber(vote)}</div>
+        <div className={classNames(styles.rate, 'vote-rate')}>{voteNumber(vote)}</div>
       </div>
     </div>
   );
