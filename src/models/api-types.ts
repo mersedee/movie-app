@@ -1,3 +1,5 @@
+import { Genre } from './general-types';
+
 export type media = 'all'| 'movie'| 'tv'| 'person';
 
 export type timeWindow = 'day' | 'week';
@@ -5,11 +7,6 @@ export type timeWindow = 'day' | 'week';
 export type Sort = 'popularity.desc' | 'popularity.asc'
     | 'release_date.desc' | 'release_date.asc'
     | 'vote_average.desc' | 'vote_average.asc';
-
-export type Genre = {
-    id: number,
-    name: string,
-}
 
 // values
 export const GENRERS: Genre[] = [
