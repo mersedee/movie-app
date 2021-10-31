@@ -16,7 +16,7 @@ const initialState = {
   loading: true,
   error: false,
   errorMessage: '',
-  movie: {} as models.Movie,
+  movie: {} as models.MovieDetail,
   movies: initialMovieList,
   trendingMovies: initialMovieList,
 };

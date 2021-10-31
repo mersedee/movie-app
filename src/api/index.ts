@@ -34,3 +34,5 @@ export const getMovieImageUrl = (path:string, background: boolean = false) => {
 };
 
 export const getSrcsetUrl = (path:string) => `${tmdbUrl}w220_and_h330_face/${path} 1x, ${tmdbUrl}w440_and_h660_face/${path} 2x`;
+
+export const getLogoUrl = (path: string) => `${tmdbUrl}w200${path}`;
