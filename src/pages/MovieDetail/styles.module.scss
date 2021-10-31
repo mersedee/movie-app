@@ -130,3 +130,32 @@
     height: 29px;
   }
 }
+
+.hr {
+  margin-top: 86px;
+  margin-bottom: 50px;
+  border-top: 1px solid #ececec;
+}
+
+.related {
+  font-size: 32px;
+  font-weight: 500;
+  color: #000;
+}
+
+.all {
+  text-decoration: none !important;
+  font-size: 16px;
+  font-weight: 500;
+  color: #80818a;
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-left: 4px;
+  }
+
+  &:hover {
+    color: #80818a;
+  }
+}

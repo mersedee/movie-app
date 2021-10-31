@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import classNames from 'classnames';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import { GlobalContext } from 'context/GlobalState';
 import actions from 'context/actions';
@@ -107,6 +107,13 @@ const MovieDetail = () => {
                   ))}
                 </div>
               </div>
+            </div>
+            <hr className={styles.hr} />
+            <div className="d-flex justify-content-between align-items-center">
+              <div className={styles.related}>Related Movie</div>
+              <Link to="/" className={styles.all}>See all movies
+                <span className="fa fa-long-arrow-right" />
+              </Link>
             </div>
           </div>
         </div>
