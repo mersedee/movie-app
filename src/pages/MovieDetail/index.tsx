@@ -26,7 +26,7 @@ const MovieDetail = () => {
   useEffect(() => {
     actions.getMovie(parseInt(id, 10))(dispatch);
     actions.getSimilarMovies(parseInt(id, 10))(dispatch);
-  }, []);
+  }, [id]);
 
   const genres = !isEmpty(movie)
   && movie.genres.slice(0, 2).map((genre: Genre) => (
