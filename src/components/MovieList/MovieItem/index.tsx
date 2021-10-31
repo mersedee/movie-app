@@ -51,7 +51,7 @@ const MovieItem = ({ movie }: AppProps) => {
             ))}
           </div>
         </div>
-        <div className={styles.vote}>{movie.vote_average}</div>
+        <div className={styles.vote}>{Math.round(movie.vote_average * 10) / 10}</div>
       </div>
     </div>
   );
