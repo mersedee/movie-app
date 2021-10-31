@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Movie, Genre } from 'models';
-import { getMovieUrl, getSrcsetUrl } from 'api';
+import { getMovieImageUrl, getSrcsetUrl } from 'api';
 import findGenres from 'helpers/findGenres';
 import movieIcon from 'assets/images/film_reel.svg';
 
@@ -31,7 +31,7 @@ const MovieItem = ({ movie }: AppProps) => {
           <div className={styles['img-container']}>
             <img
               loading="lazy"
-              src={getMovieUrl(movie.poster_path)}
+              src={getMovieImageUrl(movie.poster_path)}
               srcSet={getSrcsetUrl(movie.poster_path)}
               alt={movie.title}
             />

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { Movie, Genre } from 'models';
 import Header from 'components/header';
-import { getMovieUrl } from 'api';
+import { getMovieImageUrl } from 'api';
 import Vote from 'components/Vote';
 
 import styles from './styles.module.scss';
@@ -21,7 +21,7 @@ const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
       className={styles.header}
       style={{
         backgroundImage: `${gradiantStyle},
-         url("${getMovieUrl(trendingMovie.backdrop_path, true)}")`,
+         url("${getMovieImageUrl(trendingMovie.backdrop_path, true)}")`,
       }}
     >
       <div className="layout">

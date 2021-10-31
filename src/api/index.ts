@@ -18,12 +18,14 @@ export const getMovieListUrl = (
         .join('&')}`;
 };
 
+export const getMovieUrl = (id: number) => `${baseUrl}/movie/${id}`;
+
 export const getTrendingMoviesUrl = (
   mediaType: media = 'movie',
   timeWindowType: timeWindow = 'day',
 ) => `${baseUrl}/trending/${mediaType}/${timeWindowType}?api_key=${process.env.REACT_APP_API_KEY}`;
 
-export const getMovieUrl = (path:string, background: boolean = false) => {
+export const getMovieImageUrl = (path:string, background: boolean = false) => {
   if (background) {
     return `${tmdbUrl}w1920_and_h800_multi_faces${path}`;
   }
