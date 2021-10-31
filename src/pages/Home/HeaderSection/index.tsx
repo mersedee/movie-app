@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useHistory } from 'react-router-dom';
 
 import { Movie, Genre } from 'models';
 import Header from 'components/header';
@@ -14,6 +15,8 @@ type HeaderType = {
 }
 
 const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
+  const history = useHistory();
+
   const gradiantStyle = 'linear-gradient(to bottom right, rgba(8.24%, 10.98%, 11.76%, 0.70), rgba(8.24%, 10.98%, 11.76%, 0.54))';
 
   return (
@@ -47,6 +50,7 @@ const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
               <button
                 type="button"
                 className={classNames(styles.btn, 'button-outline')}
+                onClick={() => history.push(`/${trendingMovie.id}`)}
               >
                 View info
               </button>
