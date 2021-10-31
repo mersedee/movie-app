@@ -5,6 +5,7 @@ function reducer(state: models.initialStateType, action: any) {
   switch (action.type) {
     case types.API_GET_MOVIES_PENDING:
     case types.API_GET_TRENDING_MOVIES_PENDING:
+    case types.API_GET_MOVIE_PENDING:
       return {
         ...state,
         loading: true,
@@ -23,8 +24,15 @@ function reducer(state: models.initialStateType, action: any) {
         loading: false,
         trendingMovies: action.payload.data.data,
       };
+    case types.API_GET_MOVIE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        movie: action.payload.data.data,
+      };
     case types.API_GET_MOVIES_FAILURE:
     case types.API_GET_TRENDING_MOVIES_FAILURE:
+    case types.API_GET_MOVIE_FAILURE:
       return {
         ...state,
         loading: false,

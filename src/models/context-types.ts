@@ -1,10 +1,11 @@
 import { Dispatch } from 'react';
-import { MovieList } from './movie-types';
+import { Movie, MovieList } from './movie-types';
 
 export type initialStateType = {
     loading: boolean
     error: boolean
     errorMessage: string
+    movie: Movie
     movies: MovieList
     trendingMovies: MovieList
 };

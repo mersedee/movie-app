@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
-import { getMovieListUrl, getTrendingMoviesUrl } from 'api';
+import { getMovieListUrl, getMovieUrl, getTrendingMoviesUrl } from 'api';
 import types from 'context/types';
 import { Sort } from 'models';
 
@@ -23,6 +23,16 @@ const actions = {
     } catch (error: any) {
       if (error.cancelled) return;
       dispatch({ type: types.API_GET_TRENDING_MOVIES_FAILURE, payload: error.toString() });
+    }
+  },
+  getMovie: (id: number) => async (dispatch: Dispatch<any>) => {
+    dispatch({ type: types.API_GET_MOVIE_PENDING });
+    try {
+      const data = await axios.get(getMovieUrl(id));
+      dispatch({ type: types.API_GET_MOVIE_SUCCESS, payload: { data } });
+    } catch (error: any) {
+      if (error.cancelled) return;
+      dispatch({ type: types.API_GET_MOVIE_FAILURE, payload: error.toString() });
     }
   },
 };

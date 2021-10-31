@@ -18,7 +18,7 @@ export const getMovieListUrl = (
         .join('&')}`;
 };
 
-export const getMovieUrl = (id: number) => `${baseUrl}/movie/${id}`;
+export const getMovieUrl = (id: number) => `${baseUrl}/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
 
 export const getTrendingMoviesUrl = (
   mediaType: media = 'movie',
