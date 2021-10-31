@@ -17,6 +17,7 @@ const initialState = {
   error: false,
   errorMessage: '',
   movie: {} as models.MovieDetail,
+  similarMovies: initialMovieList,
   movies: initialMovieList,
   trendingMovies: initialMovieList,
 };

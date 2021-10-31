@@ -6,6 +6,7 @@ export type initialStateType = {
     error: boolean
     errorMessage: string
     movie: MovieDetail
+    similarMovies: MovieList,
     movies: MovieList
     trendingMovies: MovieList
 };

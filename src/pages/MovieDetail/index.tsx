@@ -8,6 +8,7 @@ import Header from 'components/header';
 import isEmpty from 'helpers/is-empty';
 import Vote from 'components/Vote';
 import Loading from 'components/Loading';
+import MovieList from 'components/MovieList';
 import { Genre, ProductionCompany } from 'models';
 import { getMovieImageUrl, getLogoUrl } from 'api';
 
@@ -20,10 +21,11 @@ type Param = {
 const MovieDetail = () => {
   const { id }: Param = useParams();
   const { state, dispatch } = useContext(GlobalContext);
-  const { movie } = state;
+  const { movie, similarMovies } = state;
 
   useEffect(() => {
     actions.getMovie(parseInt(id, 10))(dispatch);
+    actions.getSimilarMovies(parseInt(id, 10))(dispatch);
   }, []);
 
   const genres = !isEmpty(movie)
@@ -114,6 +116,9 @@ const MovieDetail = () => {
               <Link to="/" className={styles.all}>See all movies
                 <span className="fa fa-long-arrow-right" />
               </Link>
+            </div>
+            <div className="mt-5">
+              <MovieList movies={similarMovies.results.slice(0, 4)} />
             </div>
           </div>
         </div>
