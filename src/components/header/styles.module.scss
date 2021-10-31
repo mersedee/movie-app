@@ -5,3 +5,12 @@
   height: 40px;
   color: white;
 }
+
+.link {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.link:hover {
+  color: white;
+}
