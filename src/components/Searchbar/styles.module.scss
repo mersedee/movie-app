@@ -73,10 +73,19 @@ $border-radius: 8px;
   left: 0;
   right: 0;
   width: calc(100% + 20px);
+  max-height: 200px;
+  overflow-y: auto;
 
   &-item {
     padding: 10px;
     cursor: pointer;
+    color: white;
+    text-decoration: none !important;
+    display: block;
+
+    &:hover {
+      color: white;
+    }
   }
 
   &-item:not(:last-child) {

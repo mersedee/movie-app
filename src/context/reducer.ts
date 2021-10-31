@@ -7,6 +7,7 @@ function reducer(state: models.initialStateType, action: any) {
     case types.API_GET_TRENDING_MOVIES_PENDING:
     case types.API_GET_MOVIE_PENDING:
     case types.API_GET_SIMILAR_MOVIES_PENDING:
+    case types.API_GET_SEARCH_KEYWORD_PENDING:
       return {
         ...state,
         loading: true,
@@ -37,10 +38,18 @@ function reducer(state: models.initialStateType, action: any) {
         loading: false,
         similarMovies: action.payload.data.data,
       };
+
+    case types.API_GET_SEARCH_KEYWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        searchedMovies: action.payload.data.data,
+      };
     case types.API_GET_MOVIES_FAILURE:
     case types.API_GET_TRENDING_MOVIES_FAILURE:
     case types.API_GET_MOVIE_FAILURE:
     case types.API_GET_SIMILAR_MOVIES_FAILURE:
+    case types.API_GET_SEARCH_KEYWORD_FAILURE:
       return {
         ...state,
         loading: false,

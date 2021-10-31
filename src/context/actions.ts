@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
 import {
-  getMovieListUrl, getMovieUrl, getSimilarMoviesUrl, getTrendingMoviesUrl,
+  getMovieListUrl, getMovieUrl, getSearchKeywordUrl, getSimilarMoviesUrl, getTrendingMoviesUrl,
 } from 'api';
 import types from 'context/types';
 import { Sort } from 'models';
@@ -42,6 +42,16 @@ const actions = {
     try {
       const data = await axios.get(getSimilarMoviesUrl(id));
       dispatch({ type: types.API_GET_SIMILAR_MOVIES_SUCCESS, payload: { data } });
+    } catch (error: any) {
+      if (error.cancelled) return;
+      dispatch({ type: types.API_GET_SIMILAR_MOVIES_FAILURE, payload: error.toString() });
+    }
+  },
+  getSearchedMovies: (keyword: string) => async (dispatch: Dispatch<any>) => {
+    dispatch({ type: types.API_GET_SEARCH_KEYWORD_PENDING });
+    try {
+      const data = await axios.get(getSearchKeywordUrl(keyword));
+      dispatch({ type: types.API_GET_SEARCH_KEYWORD_SUCCESS, payload: { data } });
     } catch (error: any) {
       if (error.cancelled) return;
       dispatch({ type: types.API_GET_SIMILAR_MOVIES_FAILURE, payload: error.toString() });

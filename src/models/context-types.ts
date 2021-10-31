@@ -6,9 +6,10 @@ export type initialStateType = {
     error: boolean
     errorMessage: string
     movie: MovieDetail
-    similarMovies: MovieList,
+    similarMovies: MovieList
     movies: MovieList
     trendingMovies: MovieList
+    searchedMovies: MovieList
 };
 
 export type createContextType = {

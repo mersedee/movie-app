@@ -20,6 +20,7 @@ const initialState = {
   similarMovies: initialMovieList,
   movies: initialMovieList,
   trendingMovies: initialMovieList,
+  searchedMovies: initialMovieList,
 };
 
 export const GlobalContext = createContext<models.createContextType>(

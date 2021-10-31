@@ -27,6 +27,8 @@ export const getTrendingMoviesUrl = (
   timeWindowType: timeWindow = 'day',
 ) => `${baseUrl}/trending/${mediaType}/${timeWindowType}?api_key=${process.env.REACT_APP_API_KEY}`;
 
+export const getSearchKeywordUrl = (keyword: string) => `${baseUrl}/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${keyword}`;
+
 export const getMovieImageUrl = (path:string, background: boolean = false) => {
   if (background) {
     return `${tmdbUrl}w1920_and_h800_multi_faces${path}`;
