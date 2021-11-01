@@ -46,7 +46,7 @@ const MovieDetail = () => {
 
   const details = [
     { label: 'Gener', value: genres },
-    { label: 'Language', value: !isEmpty(movie) && movie.spoken_languages[0].name },
+    { label: 'Language', value: !isEmpty(movie) && movie.spoken_languages[0] && movie.spoken_languages[0].name },
     { label: 'Release date', value: new Date(movie.release_date).getFullYear() },
     { label: 'imdb', value: movie.vote_average },
   ];
@@ -63,10 +63,18 @@ const MovieDetail = () => {
           <div className={classNames('layout', styles.content)}>
             <div className="row">
               <div className="col-lg-6 col-md-12 col-sm-12 col-12">
-                <div
-                  className={styles.img}
-                  style={{ backgroundImage: `url("${getMovieImageUrl(movie.backdrop_path, true)}")` }}
-                />
+                {movie.backdrop_path
+                  ? (
+                    <div
+                      className={styles.img}
+                      style={{ backgroundImage: `url("${getMovieImageUrl(movie.backdrop_path, true)}")` }}
+                    />
+                  ) : (
+                    <div
+                      className={styles.img}
+                      style={{ backgroundImage: `url("${getMovieImageUrl(movie.poster_path)}")` }}
+                    />
+                  ) }
               </div>
               <div className="col-lg-6 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-4 mt-sm-4 mt-4">
                 <div className={styles.details}>
@@ -110,7 +118,8 @@ const MovieDetail = () => {
                   )}
                 </div>
                 <div className={styles.companies}>
-                  <div>Production Company</div>
+                  {!isEmpty(movie.production_companies)
+                  && <div>Production Company</div>}
                   {movie.production_companies.slice(0, 3).map((company:ProductionCompany) => (
                     <div key={company.id}>
                       {
@@ -128,12 +137,15 @@ const MovieDetail = () => {
               </div>
             </div>
             <hr className={styles.hr} />
+            {!isEmpty(similarMovies.results)
+            && (
             <div className="d-flex justify-content-between align-items-center">
               <div className={styles.related}>Related Movie</div>
               <Link to="/" className={styles.all}>See all movies
                 <span className="fa fa-long-arrow-right" />
               </Link>
             </div>
+            )}
             <div className="mt-5">
               <MovieList movies={similarMovies.results.slice(0, 4)} />
             </div>
