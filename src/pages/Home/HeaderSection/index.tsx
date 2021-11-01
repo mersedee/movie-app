@@ -8,6 +8,7 @@ import actions from 'context/actions';
 import Header from 'components/header';
 import { getMovieImageUrl } from 'api';
 import Vote from 'components/Vote';
+import VideoPlayer from 'components/VideoPlayer';
 
 import styles from './styles.module.scss';
 
@@ -25,8 +26,6 @@ const HeaderSection = ({
 }: AppTypes) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
-
-  console.warn(videos);
 
   const onWatch = (id: number) => {
     setOpen(true);
@@ -80,12 +79,7 @@ const HeaderSection = ({
         </div>
         {open && (
         <Modal open={open} onClose={() => setOpen(false)} center>
-          <h2>Simple centered modal</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-            hendrerit risus, sed porttitor quam.
-          </p>
+          <VideoPlayer videos={videos} />
         </Modal>
         )}
       </div>
