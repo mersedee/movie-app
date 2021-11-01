@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
 import { MovieDetail, MovieList } from './movie-types';
+import { VideoList } from './video-types';
 
 export type initialStateType = {
     loading: boolean
@@ -10,6 +11,7 @@ export type initialStateType = {
     movies: MovieList
     trendingMovies: MovieList
     searchedMovies: MovieList
+    videos: VideoList
 };
 
 export type createContextType = {

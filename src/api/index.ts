@@ -22,6 +22,8 @@ export const getMovieUrl = (id: number) => `${baseUrl}/movie/${id}?api_key=${pro
 
 export const getSimilarMoviesUrl = (id: number) => `${baseUrl}/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}`;
 
+export const getMovieVideos = (id: number) => `${baseUrl}/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
+
 export const getTrendingMoviesUrl = (
   mediaType: media = 'movie',
   timeWindowType: timeWindow = 'day',
@@ -33,7 +35,6 @@ export const getMovieImageUrl = (path:string, background: boolean = false) => {
   if (background) {
     return `${tmdbUrl}w1920_and_h800_multi_faces${path}`;
   }
-
   return `${tmdbUrl}w440_and_h660_face${path}`;
 };
 

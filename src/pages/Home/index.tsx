@@ -20,7 +20,7 @@ const HomePage = () => {
   const [trendingMovie, setTrendingMovie] = useState<Movie>({} as Movie);
   const [genres, setGenres] = useState<Genre[]>([]);
   const { state, dispatch } = useContext(GlobalContext);
-  const { trendingMovies, movies } = state;
+  const { trendingMovies, movies, videos } = state;
   const [count, setCount] = useState<number>(2);
   const [sort, setSort] = useState<Sort>(POPULARITY_SORT[0]);
   const [newMovies, setNewMovies] = useState<Movie[]>([]);
@@ -75,7 +75,14 @@ const HomePage = () => {
   return (
     <div className="container-fluid px-0">
       {trendingMovies.results.length > 0
-      && <HeaderSection trendingMovie={trendingMovie} genres={genres} />}
+      && (
+      <HeaderSection
+        trendingMovie={trendingMovie}
+        genres={genres}
+        dispatch={dispatch}
+        videos={videos}
+      />
+      )}
       <div className="layout">
         <div className={styles.tabs}>
           <Tabs defaultActiveKey={tabs[0].key} onChange={onSort}>

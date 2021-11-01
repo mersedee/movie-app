@@ -21,6 +21,7 @@ const initialState = {
   movies: initialMovieList,
   trendingMovies: initialMovieList,
   searchedMovies: initialMovieList,
+  videos: { id: '', results: [] },
 };
 
 export const GlobalContext = createContext<models.createContextType>(

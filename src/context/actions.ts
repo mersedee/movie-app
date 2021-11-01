@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { Dispatch } from 'react';
 import {
-  getMovieListUrl, getMovieUrl, getSearchKeywordUrl, getSimilarMoviesUrl, getTrendingMoviesUrl,
+  getMovieListUrl, getMovieUrl, getMovieVideos, getSearchKeywordUrl,
+  getSimilarMoviesUrl, getTrendingMoviesUrl,
 } from 'api';
 import types from 'context/types';
 import { Sort } from 'models';
@@ -55,6 +56,16 @@ const actions = {
     } catch (error: any) {
       if (error.cancelled) return;
       dispatch({ type: types.API_GET_SIMILAR_MOVIES_FAILURE, payload: error.toString() });
+    }
+  },
+  getMovieVideos: (id: number) => async (dispatch: Dispatch<any>) => {
+    dispatch({ type: types.API_GET_MOVIE_VIDEOS_PENDING });
+    try {
+      const data = await axios.get(getMovieVideos(id));
+      dispatch({ type: types.API_GET_MOVIE_VIDEOS_SUCCESS, payload: { data } });
+    } catch (error: any) {
+      if (error.cancelled) return;
+      dispatch({ type: types.API_GET_MOVIE_VIDEOS_FAILURE, payload: error.toString() });
     }
   },
 };

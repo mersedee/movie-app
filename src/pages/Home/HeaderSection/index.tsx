@@ -1,25 +1,37 @@
-import React, { useState } from 'react';
+import React, { Dispatch, useState } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { Modal } from 'react-responsive-modal';
 
-import { Movie, Genre } from 'models';
+import { Movie, Genre, VideoList } from 'models';
+import actions from 'context/actions';
 import Header from 'components/header';
 import { getMovieImageUrl } from 'api';
 import Vote from 'components/Vote';
 
 import styles from './styles.module.scss';
 
-type HeaderType = {
-  trendingMovie: Movie,
-  genres: Genre[],
+type AppTypes = {
+  trendingMovie: Movie
+  genres: Genre[]
+  dispatch: Dispatch<any>
+  videos: VideoList
 }
 
-const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
+const gradiantStyle = 'linear-gradient(to bottom right, rgba(8.24%, 10.98%, 11.76%, 0.70), rgba(8.24%, 10.98%, 11.76%, 0.54))';
+
+const HeaderSection = ({
+  trendingMovie, genres, videos, dispatch,
+}: AppTypes) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
 
-  const gradiantStyle = 'linear-gradient(to bottom right, rgba(8.24%, 10.98%, 11.76%, 0.70), rgba(8.24%, 10.98%, 11.76%, 0.54))';
+  console.warn(videos);
+
+  const onWatch = (id: number) => {
+    setOpen(true);
+    actions.getMovieVideos(id)(dispatch);
+  };
 
   return (
     <div
@@ -45,7 +57,7 @@ const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
               <button
                 type="button"
                 className={classNames(styles.btn, 'button-primary')}
-                onClick={() => setOpen(true)}
+                onClick={() => onWatch(trendingMovie.id)}
               >
                 WATCH TRAILER
               </button>
