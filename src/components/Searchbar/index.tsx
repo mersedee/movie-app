@@ -23,7 +23,6 @@ const Searchbar = () => {
 
   useEffect(() => {
     actions.getSearchedMovies(value)(dispatch);
-    console.warn(searchedMovies);
   }, [value]);
 
   return (
