@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
+import { Modal } from 'react-responsive-modal';
 
 import { Movie, Genre } from 'models';
 import Header from 'components/header';
@@ -16,6 +17,7 @@ type HeaderType = {
 
 const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
   const history = useHistory();
+  const [open, setOpen] = useState(false);
 
   const gradiantStyle = 'linear-gradient(to bottom right, rgba(8.24%, 10.98%, 11.76%, 0.70), rgba(8.24%, 10.98%, 11.76%, 0.54))';
 
@@ -43,8 +45,9 @@ const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
               <button
                 type="button"
                 className={classNames(styles.btn, 'button-primary')}
+                onClick={() => setOpen(true)}
               >
-                Watch movie
+                WATCH TRAILER
               </button>
 
               <button
@@ -52,16 +55,7 @@ const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
                 className={classNames(styles.btn, 'button-outline')}
                 onClick={() => history.push(`/${trendingMovie.id}`)}
               >
-                View info
-              </button>
-
-              <button
-                type="button"
-                className={classNames(styles.btn,
-                  styles['btn-default'],
-                  'button-default')}
-              >
-                + Add to Wishlist
+                VIEW INFO
               </button>
             </div>
           </div>
@@ -72,6 +66,16 @@ const HeaderSection = ({ trendingMovie, genres }: HeaderType) => {
             />
           ) : null}
         </div>
+        {open && (
+        <Modal open={open} onClose={() => setOpen(false)} center>
+          <h2>Simple centered modal</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+            pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+            hendrerit risus, sed porttitor quam.
+          </p>
+        </Modal>
+        )}
       </div>
     </div>
   );
