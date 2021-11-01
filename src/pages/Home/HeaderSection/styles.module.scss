@@ -15,7 +15,7 @@
     left: 0;
     height: 100px;
     display: flex;
-    justify-content: space-between;
+    //justify-content: space-between;
     align-items: flex-end;
     padding-bottom: 40px;
 
@@ -49,6 +49,7 @@
   font-size: 16px;
   font-weight: 500;
   color: white;
+  white-space: nowrap;
 
   &-default {
     font-weight: normal;

@@ -11,10 +11,10 @@ import Loading from 'components/Loading';
 import MovieList from 'components/MovieList';
 import { Genre, ProductionCompany } from 'models';
 import { getMovieImageUrl, getLogoUrl } from 'api';
+import VideoPlayer from 'components/VideoPlayer';
 
 import { Modal } from 'react-responsive-modal';
 import styles from './styles.module.scss';
-import VideoPlayer from '../../components/VideoPlayer';
 
 type Param = {
   id: string
@@ -39,7 +39,8 @@ const MovieDetail = () => {
   const genres = !isEmpty(movie)
   && movie.genres.slice(0, 2).map((genre: Genre) => (
     <span key={genre.id}>
-      {genre.name} <i>,</i>
+      {genre.id === 878 ? 'Sci-Fi'
+        : genre.name} <i>,</i>
     </span>
   ));
 
@@ -54,8 +55,10 @@ const MovieDetail = () => {
     <>
       {isEmpty(movie) ? <div><Loading /></div> : (
         <div>
-          <div className={classNames('layout', styles.header)}>
-            <Header />
+          <div className={styles.header}>
+            <div className="layout">
+              <Header />
+            </div>
           </div>
           <div className={classNames('layout', styles.content)}>
             <div className="row">
@@ -65,7 +68,7 @@ const MovieDetail = () => {
                   style={{ backgroundImage: `url("${getMovieImageUrl(movie.backdrop_path, true)}")` }}
                 />
               </div>
-              <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+              <div className="col-lg-6 col-md-12 col-sm-12 col-12 mt-lg-0 mt-md-4 mt-sm-4 mt-4">
                 <div className={styles.details}>
                   {details.map((detail) => (
                     <div className={styles['details-box']} key={detail.label.trim()}>
@@ -108,7 +111,7 @@ const MovieDetail = () => {
                 </div>
                 <div className={styles.companies}>
                   <div>Production Company</div>
-                  {movie.production_companies.map((company:ProductionCompany) => (
+                  {movie.production_companies.slice(0, 3).map((company:ProductionCompany) => (
                     <div key={company.id}>
                       {
                           company.logo_path

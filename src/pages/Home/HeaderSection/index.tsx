@@ -42,40 +42,48 @@ const HeaderSection = ({
     >
       <div className="layout">
         <Header />
-        <div className={classNames(styles['header-info'], 'layout')}>
-          <div>
-            <h1 className={styles['header-info-title']}>{trendingMovie.title?.toUpperCase()}</h1>
-            <div className="d-flex">
-              {genres.map((genre: Genre) => (
-                <div className={styles['header-info-detail']} key={genre.id}>
-                  {genre.name}
+        <div className={styles['header-info']}>
+          <div className="layout">
+            <div className="row justify-content-between align-items-end">
+              <div className="col-lg-auto col-md-12 col-sm-12 col-12">
+                <h1 className={styles['header-info-title']}>{trendingMovie.title?.toUpperCase()}</h1>
+                <div className="d-flex">
+                  {genres.map((genre: Genre) => (
+                    <div className={styles['header-info-detail']} key={genre.id}>
+                      {genre.name}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="d-flex">
-              <button
-                type="button"
-                className={classNames(styles.btn, 'button-primary')}
-                onClick={() => onWatch(trendingMovie.id)}
-              >
-                WATCH TRAILER
-              </button>
+                <div className="d-flex">
+                  <button
+                    type="button"
+                    className={classNames(styles.btn, 'button-primary')}
+                    onClick={() => onWatch(trendingMovie.id)}
+                  >
+                    WATCH TRAILER
+                  </button>
 
-              <button
-                type="button"
-                className={classNames(styles.btn, 'button-outline')}
-                onClick={() => history.push(`/${trendingMovie.id}`)}
-              >
-                VIEW INFO
-              </button>
+                  <button
+                    type="button"
+                    className={classNames(styles.btn, 'button-outline')}
+                    onClick={() => history.push(`/${trendingMovie.id}`)}
+                  >
+                    VIEW INFO
+                  </button>
+                </div>
+              </div>
+              <div className="col-lg-auto col-md-12 col-sm-12 col-12 mt-0 mt-md-4 mt-sm-4 mt-4">
+                {trendingMovie.vote_average && trendingMovie.vote_average > 0 ? (
+                  <div style={{ width: '212px' }}>
+                    <Vote
+                      vote={trendingMovie.vote_average}
+                      count={trendingMovie.vote_count}
+                    />
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
-          {trendingMovie.vote_average && trendingMovie.vote_average > 0 ? (
-            <Vote
-              vote={trendingMovie.vote_average}
-              count={trendingMovie.vote_count}
-            />
-          ) : null}
         </div>
         {open && (
         <Modal open={open} onClose={() => setOpen(false)} center>

@@ -36,3 +36,32 @@
 .react-responsive-modal-closeButton path {
   fill: #babbc3;
 }
+
+@media(min-width: 1612px) {
+  .layout {
+    width: 1500px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+@media(max-width: 1000px) {
+  .layout {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+}
+
+@media(max-width: 756px) {
+  .layout {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+
+@media(max-width: 500px) {
+  .layout {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
