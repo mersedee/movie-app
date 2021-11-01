@@ -1,6 +1,6 @@
 import React from 'react';
 import { GlobalProvider } from 'context/GlobalState';
-import { Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import 'bootstrap/scss/bootstrap.scss';
 import 'font-awesome/scss/font-awesome.scss';
@@ -11,13 +11,11 @@ import './App.scss';
 import HomePage from 'pages/Home';
 import MovieDetail from 'pages/MovieDetail';
 
-import history from './history';
-
 function App() {
   return (
     <GlobalProvider>
       <div className="App">
-        <Router history={history}>
+        <Router>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/:id" component={MovieDetail} />
