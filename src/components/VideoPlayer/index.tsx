@@ -1,9 +1,10 @@
 import React from 'react';
-import { Video, VideoList } from 'models';
 import ReactPlayer from 'react-player/youtube';
 
+import { Video, VideoList } from 'models';
+import isEmpty from 'helpers/is-empty';
+
 import styles from './styles.module.scss';
-import isEmpty from '../../helpers/is-empty';
 
 type AppTypes = {
     videos: VideoList
@@ -23,8 +24,8 @@ const VideoPlayer = ({ videos }: AppTypes) => {
         </div>
       ) : (
         <div
-          className="my-5 text-center"
-          style={{ color: 'white' }}
+          className="d-flex align-items-center justify-content-center"
+          style={{ color: 'white', width: '400px', height: '200px' }}
         >There is no trailer yet :((
         </div>
       )}

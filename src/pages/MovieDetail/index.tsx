@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useParams, Link } from 'react-router-dom';
 
@@ -12,7 +12,9 @@ import MovieList from 'components/MovieList';
 import { Genre, ProductionCompany } from 'models';
 import { getMovieImageUrl, getLogoUrl } from 'api';
 
+import { Modal } from 'react-responsive-modal';
 import styles from './styles.module.scss';
+import VideoPlayer from '../../components/VideoPlayer';
 
 type Param = {
   id: string
@@ -21,12 +23,18 @@ type Param = {
 const MovieDetail = () => {
   const { id }: Param = useParams();
   const { state, dispatch } = useContext(GlobalContext);
-  const { movie, similarMovies } = state;
+  const { movie, similarMovies, videos } = state;
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     actions.getMovie(parseInt(id, 10))(dispatch);
     actions.getSimilarMovies(parseInt(id, 10))(dispatch);
   }, [id]);
+
+  const onWatch = (movieId: number) => {
+    setOpen(true);
+    actions.getMovieVideos(movieId)(dispatch);
+  };
 
   const genres = !isEmpty(movie)
   && movie.genres.slice(0, 2).map((genre: Genre) => (
@@ -88,9 +96,15 @@ const MovieDetail = () => {
                     className={
                       classNames(styles.btn, styles['btn-default'], 'button-default')
                     }
+                    onClick={() => onWatch(movie.id)}
                   >
                     Watch Trailer
                   </button>
+                  {open && (
+                  <Modal open={open} onClose={() => setOpen(false)} center>
+                    <VideoPlayer videos={videos} />
+                  </Modal>
+                  )}
                 </div>
                 <div className={styles.companies}>
                   <div>Production Company</div>
