@@ -2,7 +2,7 @@
 
 - Search and filter movies based on [TMDB](https://www.themoviedb.org) API.
 - Use this [concept](https://www.sketchappsources.com/free-source/2682-the-movie-box-landing-page-sketch-freebie-resource.html) to build this app.
-- This project is available on [live]().
+- This project is available on [netlify](https://kind-lumiere-ef8b35.netlify.app/).
 
 ## Installation
 
