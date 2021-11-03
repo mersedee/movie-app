@@ -4,7 +4,7 @@
 - Use this [concept](https://www.sketchappsources.com/free-source/2682-the-movie-box-landing-page-sketch-freebie-resource.html) to build this app.
 - This project is available on [live]().
 
----
+------
 
 ## Installation
 
@@ -26,7 +26,7 @@ Create the build:
 npm run build
 ```
 
----
+------
 
 ## Environment
 
