@@ -28,7 +28,11 @@ export const GlobalContext = createContext<models.createContextType>(
   { state: initialState, dispatch: () => null, actions: {} },
 );
 
-export const GlobalProvider:FC = ({ children }) => {
+type AppProps = {
+  children: any
+}
+
+export const GlobalProvider:FC<any> = ({ children }:AppProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
